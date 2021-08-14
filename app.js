@@ -35,7 +35,7 @@ function isPalindrome(str) {     // exercise 2
 
 
 
-function convertDateToStr(date){    //exercise 3: converting a date fromnumber to string
+function convertDateToStr(date){    //exercise 3: converting a date from number to string
 
 
     //Palindrome is done as a string and not a number. Hence, we need to have the entire thing as a string. If we keep them as numbers, they would just add up in exercise 4 which we don't want. 
@@ -44,7 +44,7 @@ function convertDateToStr(date){    //exercise 3: converting a date fromnumber t
 
     if(date.day < 10){
 
-        dateStr.day = '0' + date.day;
+        dateStr.day = '0' + date.day; // we don't do .tostring here because string plus number gives a string
     }
 
     else {
@@ -154,7 +154,7 @@ function getNextDate(date){ //it basically increments the date put by the user a
 
             if(day > 28){
 
-                day = 1; // if not a leap year it would still go the 1st on next month as feb as 28 days
+                day = 1; // if not a leap year it would still go the 1st on next month as feb has 28 days
                 month++;
             }
 
@@ -164,14 +164,14 @@ function getNextDate(date){ //it basically increments the date put by the user a
 
     }
 
-    else {
+    else { //if not leap year
         //check if the day that we increased exceeds the max days in a month
         if(day > daysInMonth[month - 1]){ //as the array goes from 0 to 11 and not 1 to 12 we do minus 1
 
             day = 1; //meaning we go to the next month's first day
             month++;
 
-            //this works for all months except feb as that is a lear year and we have another function for that
+            //this works for all months except feb as that is a leap year and we have another function for that
 
 
         }
@@ -223,7 +223,7 @@ function getNextPalindromeDate(date) {  //finding the next palindrome date
     var nextDate = getNextDate(date);
 
     while(1){ // an infinite loop that would run till we get the next pal date
-    ctr++; // to keep a track of how far is it or basically how many times is this loop iterating
+    ctr++; // to keep a track of how far is it or basically how many times is this loop iterating. The counter gets incremented every time there's a new value
 
     var isPalindrome = checkPalindromeForAllDateFormats(nextDate) // to check if it's pal
 
@@ -245,7 +245,7 @@ function getNextPalindromeDate(date) {  //finding the next palindrome date
 //Exercise 7: Get Previous date and previous palidrome date as well. Then compare the gap for next and previous and display whichever is shorter or nearest to the user. 
 
 
-// palindrome is not required for level one, but is a bonus so do it!
+// previous palindrome is not required for level one, but is a bonus so do it!
 
 
 
@@ -283,7 +283,7 @@ function clickHandler(e){
 
         // console.log(date); // we get the ddmmyyyy format
 
-        //since we now want to check pal and add the date, we need to convert the string to a number foramt which we do above
+        //since we now want to check pal and all the functions we defined above use Number format, we convert string to Number
 
 
         var isPalindrome = checkPalindromeForAllDateFormats(date);
@@ -302,7 +302,7 @@ function clickHandler(e){
 
 
             //we've used template literals and ternary oprator here
-            outputDiv.innerText = `The next palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year}, you missed it by ${ctr} days!`
+            outputDiv.innerText = `Your birthday is not palindrome. The next palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year}, you missed it by ${ctr} days!`
         }
 
     }
