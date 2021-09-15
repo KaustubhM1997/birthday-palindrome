@@ -257,12 +257,23 @@ var showBtn = document.querySelector('#show-btn');
 
 var outputDiv = document.querySelector("#result");
 
-function clickHandler(e){
+function clickHandler(event) {
+	if (dateInput.value == "") {
+		outputDiv.innerText = "Please select a date";
+	} else {
+		outputDiv.innerHTML = `<img src="/img/timer.gif">`;
+		setTimeout(checkBirthday, 2000);
+	}
+}
+
+function checkBirthday(){
+
     var bdayStr = dateInput.value;
 
     //the bday string shouldn't be empty
 
-    if(bdayStr !== ''){ //this means if the bday string is empty then do perform any logic. Which means if the the date is not selected this logic won't run
+    if(bdayStr !== ''){ //this means if the bday string is empty then don't perform any logic. Which means if the the date is not selected this logic won't run
+
 
         var listofDate = bdayStr.split('-'); //to remove the hyphens in the date format that we saw by printing this
 
